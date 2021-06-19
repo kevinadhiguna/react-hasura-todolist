@@ -15,12 +15,6 @@ export const GET_MY_TODOS = gql`
   }
 `;
 
-type Todo = {
-  id: number,
-  title: string,
-  is_completed: boolean
-};
-
 const TodoPrivateList = () => {
 
   const [filter, setFilter] = useState<string>("all");
