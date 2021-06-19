@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 
@@ -22,6 +22,7 @@ type Todo = {
 const TodoPrivateList = () => {
 
   const [filter, setFilter] = useState<string>("all");
+  const { data, loading, error } = useQuery(GET_MY_TODOS);
 
   const todos = [
     {
@@ -43,11 +44,18 @@ const TodoPrivateList = () => {
   const clearCompleted = () => {
   };
 
-  let filteredTodos = todos;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error || !data) {
+    return <div>Oops.. something went wrong...</div>;
+  }
+  
+  let filteredTodos = data.todos;
   if (filter === "active") {
-    filteredTodos = todos.filter((todo: Todo) => todo.is_completed !== true);
+    filteredTodos = data.todos.filter((todo: Todo) => todo.is_completed !== true);
   } else if (filter === "completed") {
-    filteredTodos = todos.filter((todo: Todo) => todo.is_completed === true);
+    filteredTodos = data.todos.filter((todo: Todo) => todo.is_completed === true);
   }
 
   const todoList = filteredTodos.map((todo: Todo, index: number) => (
