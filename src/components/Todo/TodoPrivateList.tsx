@@ -22,7 +22,11 @@ type Todo = {
 const TodoPrivateList = () => {
 
   const [filter, setFilter] = useState<string>("all");
-  const { data, loading, error } = useQuery(GET_MY_TODOS);
+  const { 
+    data,     // An object containing the result of your GraphQL query. This will contain our actual data from the server. In our case, it will be the todo data.
+    loading,  // A boolean that indicates whether the request is in flight. If loading is true, then the request hasn't finished. Typically this information can be used to display a loading spinner.
+    error     // A runtime error with graphQLErrors and networkError properties. Contains information about what went wrong with your query.
+  } = useQuery(GET_MY_TODOS);
 
   const filterResults = (filter: string): void => {
     setFilter(filter);
