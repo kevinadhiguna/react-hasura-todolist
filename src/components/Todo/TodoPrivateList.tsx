@@ -1,6 +1,17 @@
 import React, { Fragment, useState } from "react";
+import { gql } from '@apollo/client';
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
+
+export const GET_MY_TODOS = gql`
+  query getMyTodos {
+    todos(where: {is_public: {_eq: false}}, order_by: {created_at: desc}) {
+      id
+      title
+      is_completed
+    }
+  }
+`;
 
 type Todo = {
   id: number,
