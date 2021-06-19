@@ -24,19 +24,6 @@ const TodoPrivateList = () => {
   const [filter, setFilter] = useState<string>("all");
   const { data, loading, error } = useQuery(GET_MY_TODOS);
 
-  const todos = [
-    {
-      id: 1,
-      title: "This is private todo 1",
-      is_completed: true
-    },
-    {
-      id: 2,
-      title: "This is private todo 2",
-      is_completed: false
-    }
-  ];
-
   const filterResults = (filter: string): void => {
     setFilter(filter);
   };
