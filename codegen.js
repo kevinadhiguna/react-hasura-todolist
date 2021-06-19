@@ -3,7 +3,7 @@ module.exports = {
     {
       'https://hasura.io/learn/graphql': {
         headers: {
-          Authorization: 'Bearer' + process.env.AUTH_TOKEN,
+          Authorization: 'Bearer ' + process.env.AUTH_TOKEN,
         },
       },
     },
@@ -14,7 +14,7 @@ module.exports = {
     './src/generated/graphql.tsx': {
       plugins: [
         'typescript',
-        'typescript-orientation',
+        'typescript-operations',
         'typescript-react-apollo',
       ],
       config: {
