@@ -1,5 +1,6 @@
 {
   "name": "react-hasura-todolist",
+  "license": "MIT",
   "version": "0.1.0",
   "dependencies": {
     "@apollo/client": "^3.3.20",
